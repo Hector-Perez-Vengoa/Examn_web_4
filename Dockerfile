@@ -1,4 +1,4 @@
-FROM amazoncorretto:17-alfine-jdk
+FROM amazoncorretto:17-alpine-jdk
 
 COPY target/Exam_Perez-0.0.1-SNAPSHOT.jar /api-v1.jar
 
