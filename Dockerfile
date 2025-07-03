@@ -22,5 +22,5 @@ COPY --from=build /app/target/Exam_Perez-0.0.1-SNAPSHOT.jar /api-v1.jar
 # Exponer el puerto
 EXPOSE 8080
 
-# Punto de entrada
-ENTRYPOINT ["java", "-jar", "/api-v1.jar"]
+# Punto de entrada con perfil de producción
+ENTRYPOINT ["java", "-jar", "/api-v1.jar", "--spring.profiles.active=prod"]
