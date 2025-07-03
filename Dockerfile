@@ -1,17 +1,5 @@
 # Etapa de construcción
-FROM amazoncorretto:17-al2-jdk AS build
-
-# Instalar Maven 3.9.5 (versión más reciente)
-RUN yum update -y && \
-    yum install -y wget && \
-    wget https://archive.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz && \
-    tar -xzf apache-maven-3.9.5-bin.tar.gz -C /opt && \
-    ln -s /opt/apache-maven-3.9.5 /opt/maven && \
-    rm apache-maven-3.9.5-bin.tar.gz
-
-# Configurar Maven en el PATH
-ENV MAVEN_HOME=/opt/maven
-ENV PATH=${MAVEN_HOME}/bin:${PATH}
+FROM maven:3.9.5-amazoncorretto-17 AS build
 
 # Establecer directorio de trabajo
 WORKDIR /app
@@ -22,7 +10,7 @@ COPY pom.xml .
 # Copiar código fuente
 COPY src ./src
 
-# Construir la aplicación (sin descargar dependencias por separado)
+# Construir la aplicación
 RUN mvn clean package -DskipTests
 
 # Etapa de ejecución
