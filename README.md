@@ -6,43 +6,43 @@ API REST completa desarrollada con Spring Boot que implementa un sistema de gest
 
 ## 🎯 Criterios de Evaluación Cumplidos
 
-### ✅ 1. Diseño y Arquitectura (MVC + Capas) - 2 puntos
+### ✅ 1. Diseño y Arquitectura (MVC + Capas)
 - **Controller**: `AuthController`, `ProductController`
 - **Service**: `UserService`, `ProductService`, `CustomUserDetailsService`
 - **Repository**: `UserRepository`, `ProductRepository`
 - **Entity**: `User`, `Product`
 - **Config**: `SecurityConfig`, `SwaggerConfig`, `JwtUtil`, etc.
 
-### ✅ 2. Funcionalidad de la API (CRUD completo) - 2 puntos
+### ✅ 2. Funcionalidad de la API (CRUD completo)
 - **GET** `/api/products` - Obtener todos los productos
 - **GET** `/api/products/{id}` - Obtener producto por ID
 - **POST** `/api/products` - Crear nuevo producto
 - **PUT** `/api/products/{id}` - Actualizar producto
 - **DELETE** `/api/products/{id}` - Eliminar producto
 
-### ✅ 3. Seguridad (JWT / Spring Security) - 2 puntos
+### ✅ 3. Seguridad (JWT / Spring Security)
 - Autenticación JWT implementada
 - Autorización por roles (ADMIN, USER)
 - Rutas protegidas según rol
 - Filtro de autenticación personalizado
 
-### ✅ 4. Documentación con Swagger/OpenAPI - 2 puntos
+### ✅ 4. Documentación con Swagger/OpenAPI
 - Configuración completa de Swagger
 - Documentación de todos los endpoints
 - Modelos y esquemas documentados
 - Interfaz Swagger UI disponible
 
-### ✅ 5. Validación de datos y manejo de errores - 2 puntos
+### ✅ 5. Validación de datos y manejo de errores
 - Anotaciones de validación: `@NotNull`, `@Size`, `@Email`, etc.
 - Manejo global de excepciones
 - Respuestas consistentes de error
 
-### ✅ 6. Conexión a base de datos MySQL (JPA/Hibernate) - 2 puntos
+### ✅ 6. Conexión a base de datos MySQL (JPA/Hibernate
 - Configuración de MySQL en `application.properties`
 - Entidades JPA con relaciones
 - Repositorios con consultas personalizadas
 
-### ✅ 7. Buenas prácticas de código - 2 puntos
+### ✅ 7. Buenas prácticas de código
 - Código limpio y bien comentado
 - Separación de responsabilidades
 - Nombres descriptivos
@@ -66,7 +66,7 @@ Editar `src/main/resources/application.properties`:
 spring.datasource.username=tu_usuario_mysql
 spring.datasource.password=tu_password_mysql
 ```
-
+http://localhost:8080/api/auth/login
 ### Ejecutar la Aplicación
 ```bash
 mvn clean install

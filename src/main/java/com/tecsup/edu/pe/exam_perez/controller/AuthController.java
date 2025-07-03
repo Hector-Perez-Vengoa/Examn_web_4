@@ -21,6 +21,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Controlador para autenticación y autorización
  * Maneja login, registro y operaciones relacionadas con JWT
@@ -170,5 +173,21 @@ public class AuthController {
         } catch (Exception e) {
             throw new RuntimeException("Error al obtener información del usuario");
         }
+    }
+
+    /**
+     * Endpoint para debug - verificar datos recibidos
+     */
+    @PostMapping("/debug-login")
+    @Operation(summary = "Debug login request",
+               description = "Endpoint para verificar qué datos se están recibiendo")
+    public ResponseEntity<ApiResponse<Object>> debugLogin(@RequestBody Object loginData) {
+        System.out.println("Datos recibidos: " + loginData);
+
+        Map<String, Object> debugInfo = new HashMap<>();
+        debugInfo.put("datosRecibidos", loginData);
+        debugInfo.put("tipoClase", loginData.getClass().getSimpleName());
+
+        return ResponseEntity.ok(ApiResponse.success("Debug info", debugInfo));
     }
 }
