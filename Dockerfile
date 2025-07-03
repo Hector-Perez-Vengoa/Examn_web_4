@@ -1,25 +1,28 @@
 # Etapa de construcción
 FROM amazoncorretto:17-al2-jdk AS build
 
-# Instalar Maven
-RUN yum update -y && yum install -y maven
+# Instalar Maven 3.9.5 (versión más reciente)
+RUN yum update -y && \
+    yum install -y wget && \
+    wget https://archive.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz && \
+    tar -xzf apache-maven-3.9.5-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-3.9.5 /opt/maven && \
+    rm apache-maven-3.9.5-bin.tar.gz
+
+# Configurar Maven en el PATH
+ENV MAVEN_HOME=/opt/maven
+ENV PATH=${MAVEN_HOME}/bin:${PATH}
 
 # Establecer directorio de trabajo
 WORKDIR /app
 
 # Copiar archivos de configuración de Maven
 COPY pom.xml .
-COPY mvnw .
-COPY mvnw.cmd .
-COPY .mvn .mvn
-
-# Descargar dependencias
-RUN mvn dependency:go-offline -B
 
 # Copiar código fuente
 COPY src ./src
 
-# Construir la aplicación
+# Construir la aplicación (sin descargar dependencias por separado)
 RUN mvn clean package -DskipTests
 
 # Etapa de ejecución
